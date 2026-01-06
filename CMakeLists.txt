@@ -2,14 +2,15 @@ cmake_minimum_required(VERSION 3.8)
 
 project(Edra-SDK)
 
-set (FULL_OUTPUT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/bin/${CMAKE_SYSTEM_NAME}/${PROJECT_NAME})
-set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${FULL_OUTPUT_DIR}/static_libs)
-set (CMAKE_LIBRARY_OUTPUT_DIRECTORY ${FULL_OUTPUT_DIR})
-set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${FULL_OUTPUT_DIR})
-
 find_package(Threads REQUIRED)
 
 add_subdirectory(Core)
 add_subdirectory(Platform)
 
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT Core)
+
+export(
+    EXPORT EdraSDKTargets
+    FILE ${CMAKE_CURRENT_BINARY_DIR}/EdraSDKTargets.cmake
+    NAMESPACE EdraSDK::
+)
