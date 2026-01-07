@@ -1,8 +1,8 @@
-#include "ModuleInfo.hpp"
+#include "EdraSDK/Platform/ModuleInfo.hpp"
 
 #include <iostream>
 
-EDP_API void EdraPlatform::getModuleInfo()
+void EdraPlatform::getModuleInfo()
 {
 	std::cout << "Platform Module" << std::endl;
 }
