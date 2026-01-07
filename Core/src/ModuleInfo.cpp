@@ -1,8 +1,8 @@
-#include "ModuleInfo.hpp"
+#include "EdraSDK/Core/ModuleInfo.hpp"
 
 #include <iostream>
 
-void EDC_API EdraCore::getModuleInfo()
+void EdraCore::getModuleInfo()
 {
 	std::cout << "Core Module" << std::endl;
 }

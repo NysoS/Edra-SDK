@@ -3,17 +3,31 @@ project(Core)
 set (SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set (INC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-set_target_properties(${PROJECT_NAME} PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
-    LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
-    ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib
+file(GLOB_RECURSE SOURCES
+    CONFIGURE_DEPENDS
+    ${SRC_DIR}/*.cpp
+)
+
+file(GLOB_RECURSE HEADERS
+    CONFIGURE_DEPENDS
+    ${INC_DIR}/EdraSDK/${PROJECT_NAME}/*.hpp
 )
 
 add_library(
     ${PROJECT_NAME}
     SHARED
-    ${SRC_DIR}/main.cpp
-    ${INC_DIR}/EdraCore.hpp
+    ${SOURCES}
+)
+
+source_group(
+    TREE ${INC_DIR}
+    PREFIX "Headers Files"
+    FILES ${HEADERS}
+)
+
+target_sources(${PROJECT_NAME}
+    PRIVATE
+    ${HEADERS}
 )
 
 target_include_directories(
@@ -23,9 +37,17 @@ target_include_directories(
     $<INSTALL_INTERFACE:include>
 )
 
+target_compile_definitions(${PROJECT_NAME} PRIVATE EDRA_CORE_BUILD_DLL)
+
 install(
     TARGETS ${PROJECT_NAME}
     EXPORT EdraSDKTargets
+    RUNTIME DESTINATION bin
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
 )
 
-target_compile_definitions(${PROJECT_NAME} PRIVATE EDRA_CORE_BUILD_DLL)
+install(
+    DIRECTORY ${INC_DIR}/
+    DESTINATION include
+)
