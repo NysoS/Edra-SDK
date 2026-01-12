@@ -2,7 +2,8 @@
 
 A GPU SDK for building applications with full access to modern graphics features.
 
-cmake -S . -B build -DEdraSDK_DIR=${path}$/Edra-SDK/build #Dev #install sdk on app
+cmake -S . -B build -DEdraSDK_DIR=${path}/Edra-SDK/build #Dev #install sdk on app
+cmake -S . -B build -DEdraSDK_DIR=${path}/EdraSDK/lib/cmake/EdraSDK #Release #install sdk on app
 
 # Artifact
 
