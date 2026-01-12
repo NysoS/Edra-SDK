@@ -39,13 +39,13 @@ target_include_directories(
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE EDRA_CORE_BUILD_DLL)
 
-install(
-    TARGETS ${PROJECT_NAME}
-    EXPORT EdraSDKTargets
-    RUNTIME DESTINATION bin
-    LIBRARY DESTINATION lib
-    ARCHIVE DESTINATION lib
-)
+# install(
+#     TARGETS ${PROJECT_NAME}
+#     EXPORT EdraSDKTargets
+#     RUNTIME DESTINATION bin
+#     LIBRARY DESTINATION lib
+#     ARCHIVE DESTINATION lib
+# )
 
 install(
     DIRECTORY ${INC_DIR}/
