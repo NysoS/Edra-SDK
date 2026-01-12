@@ -23,7 +23,7 @@ install(
     ARCHIVE DESTINATION lib
     LIBRARY DESTINATION lib
     RUNTIME DESTINATION bin
-    INCLUDES DESTINATION includes
+    INCLUDES DESTINATION include
 )
 
 ### Install cmake target ###
