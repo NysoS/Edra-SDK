@@ -1,7 +1,10 @@
-#ifndef EDRA_WINDOW_CORE_HPP
-#define EDRA_WINDOW_CORE_HPP
+#ifndef EDP_WINDOW_CORE_HPP
+#define EDP_WINDOW_CORE_HPP
 
 #include "EdraSDK/Platform/EdraPlatform.hpp"
+
+#include "EdraSDK/Core/Aliases.hpp"
+#include "EdraSDK/Core/Utils/ABI.hpp"
 
 #include <string>
 #include <functional>
@@ -9,9 +12,9 @@
 namespace EdraSDK::Platform 
 {
 	struct WindowDesc {
-		std::wstring mTitle = L"Window";
-		const uint32_t mWidth = 800;
-		const uint32_t mHeight = 800;
+		EdraStringWC mTitle = L"Window";
+		const u32 mWidth = 800;
+		const u32 mHeight = 800;
 		const bool mResizable = false;
 	};
 
@@ -30,6 +33,8 @@ namespace EdraSDK::Platform
 
 		virtual void setWindowEventCallback(WinEventCallback pCallback) = 0;
 	};
+
+	EDRA_ABI_INTERFACE(Window, IWindow, const WindowDesc& pWinDesc);
 }
 
-#endif // !EDRA_WINDOW_CORE_HPP
+#endif // !EDP_WINDOW_CORE_HPP

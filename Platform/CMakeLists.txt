@@ -14,6 +14,12 @@ add_library(
     ${SOURCES}
 )
 
+target_link_libraries(
+    ${PROJECT_NAME}
+    PRIVATE
+    Core
+)
+
 file(GLOB_RECURSE HEADERS
     CONFIGURE_DEPENDS
     ${INC_DIR}/EdraSDK/${PROJECT_NAME}/*.hpp
