@@ -4,21 +4,20 @@
 #include "EdraSDK/Platform/EdraPlatform.hpp"
 
 #include "EdraSDK/Core/Aliases.hpp"
-#include "EdraSDK/Core/Utils/ABI.hpp"
 
 #include <string>
 #include <functional>
 
-namespace EdraSDK::Platform 
+namespace EdraSDK::Platform
 {
-	struct WindowDesc {
+	struct EDP_API WindowDesc {
 		EdraStringWC mTitle = L"Window";
 		const u32 mWidth = 800;
 		const u32 mHeight = 800;
 		const bool mResizable = false;
 	};
 
-	struct IWindow
+	struct EDP_API IWindow
 	{
 		using WinEventCallback = std::function<void(void*)>;
 
@@ -33,8 +32,6 @@ namespace EdraSDK::Platform
 
 		virtual void setWindowEventCallback(WinEventCallback pCallback) = 0;
 	};
-
-	EDRA_ABI_INTERFACE(Window, IWindow, const WindowDesc& pWinDesc);
-}
+};
 
 #endif // !EDP_WINDOW_CORE_HPP

@@ -1,17 +1,6 @@
 #include "EdraSDK/PlatformOS/Windows/Win32Window.hpp"
-#include "EdraSDK/Core/Utils/ABI.hpp"
 
-EXTERNC Edra::EDP::IWindow* Edra::EDP::Edra_Window_Create(const Edra::EDP::WindowDesc& pWinDesc)
-{
-	return new EDP_OS::Win32Window(pWinDesc);
-}
-
-EXTERNC void Edra::EDP::Edra_Window_Destroy(EDP::IWindow* pObj)
-{
-	delete pObj;
-}
-
-EdraSDK::PlatformOS::Win32Window::Win32Window(const EDP::WindowDesc& pWinDesc)
+EdraSDK::PlatformOS::Win32Window::Win32Window(const Edra::EDP::WindowDesc& pWinDesc)
 {
 }
 
