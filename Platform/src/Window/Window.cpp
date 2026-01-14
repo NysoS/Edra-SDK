@@ -2,6 +2,9 @@
 
 #include <iostream>
 
+// TODO : Refacto on module system & generic ABI system 
+// TODO : Cross platform module system (win32) // add linux later
+
 namespace EdraSDK::Platform{
 	FN_Edra_Window_Create Window::s_CreateFunc = nullptr;
 	FN_Edra_Window_Destroy Window::s_DestroyFun = nullptr;
