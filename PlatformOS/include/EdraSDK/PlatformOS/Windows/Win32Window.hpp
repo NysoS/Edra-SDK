@@ -3,7 +3,6 @@
 
 #include "EdraSDK/Platform/Window/WindowCore.hpp"
 #include "EdraSDK/PlatformOS/EdraPlatformOS.hpp"
-#include "EdraSDK/Core/Aliases.hpp"
 
 #include <Windows.h>
 
@@ -12,7 +11,7 @@ namespace EdraSDK::PlatformOS
 	class EDP_OS_API Win32Window : public EDP::IWindow
 	{
 	public:
-		Win32Window(const Edra::EDP::WindowDesc& pWinDesc);
+		Win32Window(const EDP::WindowDesc& pWinDesc);
 		virtual ~Win32Window();
 
 		virtual bool initialize();
@@ -24,11 +23,11 @@ namespace EdraSDK::PlatformOS
 
 		virtual void setWindowEventCallback(EDP::IWindow::WinEventCallback pCallback);
 	private:
-		Edra::EDP::WindowDesc mWinDesc;
-		bool mShouldClose = false;
-		HWND mHandle = nullptr;
+		EDP::WindowDesc mWinDesc;
+		bool mShouldClose;
+		HWND mHandle;
 
-		Edra::EDP::IWindow::WinEventCallback mOnWindowEventCallback;
+		EDP::IWindow::WinEventCallback mOnWindowEventCallback;
 	};
 };
 

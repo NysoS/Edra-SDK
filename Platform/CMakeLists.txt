@@ -8,6 +8,11 @@ file(GLOB_RECURSE SOURCES
     ${SRC_DIR}/*.cpp
 )
 
+file(GLOB_RECURSE HEADERS
+    CONFIGURE_DEPENDS
+    ${INC_DIR}/EdraSDK/${PROJECT_NAME}/*.hpp
+)
+
 add_library(
     ${PROJECT_NAME}
     SHARED
@@ -17,12 +22,7 @@ add_library(
 target_link_libraries(
     ${PROJECT_NAME}
     PRIVATE
-    Core
-)
-
-file(GLOB_RECURSE HEADERS
-    CONFIGURE_DEPENDS
-    ${INC_DIR}/EdraSDK/${PROJECT_NAME}/*.hpp
+        Core
 )
 
 source_group(

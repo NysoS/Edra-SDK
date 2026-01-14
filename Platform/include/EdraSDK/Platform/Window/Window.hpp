@@ -2,11 +2,18 @@
 
 #include "EdraSDK/Platform/EdraPlatform.hpp"
 
+#include <Windows.h>
+#include <iostream>
+
 namespace EdraSDK::Platform
 {
 	class EDP_API Window
 	{
 	public:
+		static FN_Edra_Window_Create s_CreateFunc;
+		static FN_Edra_Window_Destroy s_DestroyFun;
+		static HMODULE s_PlatformModule;
+
 		Window(const WindowDesc& pWinDesc);
 		~Window();
 
@@ -17,6 +24,5 @@ namespace EdraSDK::Platform
 
 	private:
 		IWindow* mInstance;
-		void* mModule;
 	};
 }

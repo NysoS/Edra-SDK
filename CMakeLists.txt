@@ -20,6 +20,7 @@ install(
     TARGETS
         Core
         Platform
+        PlatformOS
     EXPORT EdraSDKTargets
     ARCHIVE DESTINATION lib
     LIBRARY DESTINATION lib
