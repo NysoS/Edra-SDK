@@ -7,16 +7,19 @@
 #define EXTERNC
 #endif
 
-#define EDRA_ABI_INTERFACE_EXPORT(Name, Type, ...) \
+#define EDRA_EXPORT_CALL_FUN(ReturnType) __declspec(dllexport) ReturnType __stdcall
+#define EDRA_IMPORT_CALL_FUN(ReturnType) __declspec(dllimport) ReturnType __stdcall
+
+#define EDRA_ABI_IMPL(Name, Type, ...) \
 	EXTERNC { \
-		__declspec(dllexport) Type* Edra_##Name##_Create(__VA_ARGS__); \
-		__declspec(dllexport) void Edra_##Name##_Destroy(Type* obj); \
+		EDRA_EXPORT_CALL_FUN(Type*) Edra_##Name##_Create(__VA_ARGS__); \
+		EDRA_EXPORT_CALL_FUN(void) Edra_##Name##_Destroy(Type* obj); \
 	} \
 
-#define EDRA_ABI_INTERFACE_IMPORT(Name, Type, ...) \
+#define EDRA_ABI_INTERFACE(Name, Type, ...) \
 	EXTERNC { \
-		__declspec(dllimport) Type* Edra_##Name##_Create(__VA_ARGS__); \
-		__declspec(dllimport) void Edra_##Name##_Destroy(Type* obj); \
+		EDRA_IMPORT_CALL_FUN(Type*) Edra_##Name##_Create(__VA_ARGS__); \
+		EDRA_IMPORT_CALL_FUN(void) Edra_##Name##_Destroy(Type* obj); \
 	} \
 
 #endif // EDC_ABI

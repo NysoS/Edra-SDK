@@ -9,10 +9,6 @@ namespace EdraSDK {
 	namespace Platform{}
 	namespace PlatformOS{}
 
-	namespace EDC = Core;
-	namespace EDP = Platform;
-	namespace EDP_OS = PlatformOS;
-
 	using u8 = uint8_t;
 	using u16 = uint16_t;
 	using u32 = uint32_t;
@@ -26,13 +22,15 @@ namespace EdraSDK {
 	using f32 = float;
 	using f64 = double;
 
-	using EdraString = std::string;
-	using EdraStringW = std::wstring;
+	using String = std::string;
+	using StringW = std::wstring;
 
-	using EdraStringC = const char*;
-	using EdraStringWC = const wchar_t*;
+	using StringC = const char*;
+	using StringWC = const wchar_t*;
 }
 
-namespace Edra = EdraSDK;
+namespace EDC = EdraSDK::Core;
+namespace EDP = EdraSDK::Platform;
+namespace EDP_OS = EdraSDK::PlatformOS;
 
 #endif // !EDC_ALIASES_HPP
