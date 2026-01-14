@@ -1,4 +1,4 @@
-project(Core)
+project(PlatformOS)
 
 set (SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set (INC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
@@ -8,15 +8,22 @@ file(GLOB_RECURSE SOURCES
     ${SRC_DIR}/*.cpp
 )
 
-file(GLOB_RECURSE HEADERS
-    CONFIGURE_DEPENDS
-    ${INC_DIR}/EdraSDK/${PROJECT_NAME}/*.hpp
-)
-
 add_library(
     ${PROJECT_NAME}
     SHARED
     ${SOURCES}
+)
+
+target_link_libraries(
+    ${PROJECT_NAME}
+    PRIVATE
+    Core
+    Platform
+)
+
+file(GLOB_RECURSE HEADERS
+    CONFIGURE_DEPENDS
+    ${INC_DIR}/EdraSDK/${PROJECT_NAME}/*.hpp
 )
 
 source_group(
@@ -37,7 +44,7 @@ target_include_directories(
     $<INSTALL_INTERFACE:include>
 )
 
-target_compile_definitions(${PROJECT_NAME} PRIVATE EDRA_CORE_BUILD_DLL)
+target_compile_definitions(${PROJECT_NAME} PRIVATE EDRA_PLATFORM_OS_BUILD_DLL)
 
 install(
     DIRECTORY ${INC_DIR}/

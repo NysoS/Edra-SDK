@@ -8,15 +8,21 @@ file(GLOB_RECURSE SOURCES
     ${SRC_DIR}/*.cpp
 )
 
+file(GLOB_RECURSE HEADERS
+    CONFIGURE_DEPENDS
+    ${INC_DIR}/EdraSDK/${PROJECT_NAME}/*.hpp
+)
+
 add_library(
     ${PROJECT_NAME}
     SHARED
     ${SOURCES}
 )
 
-file(GLOB_RECURSE HEADERS
-    CONFIGURE_DEPENDS
-    ${INC_DIR}/EdraSDK/${PROJECT_NAME}/*.hpp
+target_link_libraries(
+    ${PROJECT_NAME}
+    PRIVATE
+        Core
 )
 
 source_group(
@@ -43,3 +49,10 @@ install(
     DIRECTORY ${INC_DIR}/
     DESTINATION include
 )
+
+if(CMAKE_VERSION VERSION_GREATER 3.8)
+    set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 20)
+else()
+    set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)
+endif()
+set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD_REQUIRED ON)
