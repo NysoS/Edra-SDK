@@ -44,6 +44,7 @@ target_include_directories(
     $<INSTALL_INTERFACE:include>
 )
 
+target_precompile_headers(${PROJECT_NAME} PRIVATE ${INC_DIR}/EdraSDK/${PROJECT_NAME}/platformos_pch.hpp)
 target_compile_definitions(${PROJECT_NAME} PRIVATE EDRA_PLATFORM_OS_BUILD_DLL)
 
 install(

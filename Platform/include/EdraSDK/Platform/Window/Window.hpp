@@ -1,9 +1,11 @@
 #include "EdraSDK/Platform/Window/WindowCore.hpp"
-
 #include "EdraSDK/Platform/EdraPlatform.hpp"
+#include "EdraSDK/Core/EdraDef.hpp"
 
-#include <Windows.h>
 #include <iostream>
+
+//refacto to make forward declaration of windesc into
+//refacto module loading system
 
 namespace EdraSDK::Platform
 {
@@ -12,7 +14,7 @@ namespace EdraSDK::Platform
 	public:
 		static FN_Edra_Window_Create s_CreateFunc;
 		static FN_Edra_Window_Destroy s_DestroyFun;
-		static HMODULE s_PlatformModule;
+		static EdraModule s_PlatformModule;
 
 		Window(const WindowDesc& pWinDesc);
 		~Window();
@@ -20,9 +22,9 @@ namespace EdraSDK::Platform
 		Window(const Window&) = delete;
 		Window& operator=(const Window&) = delete;
 
-		IWindow* operator->() noexcept { return mInstance; };
+		IWindow* operator->() noexcept { return (IWindow*)mHandle; };
 
 	private:
-		IWindow* mInstance;
+		EdraHandle mHandle;
 	};
 }

@@ -1,23 +1,26 @@
 #include "EdraSDK/PlatformOS/Windows/Win32Window.hpp"
 #include "EdraSDK/Core/Utils/ABI.hpp"
+#include "EdraSDK/Core/EdraDef.hpp"
 
 #include <iostream>
+#include <windows.h>
 
-//EDRA_ABI_IMPL(Window, EDP::IWindow, const EDP::WindowDesc& pWinDesc)
-EDRA_ABI_IMPL(Window, EDP::IWindow, const EDP::WindowDesc& pWinDesc);
-
-EDRA_EXPORT_CALL_FUN(EDP::IWindow*) Edra_Window_Create(const EDP::WindowDesc& pWinDesc) 
+EDRA_EXPORT_CALL_FUN(EdraHandle) Edra_Window_Create(const EdraSDK::Platform::WindowDesc& pWinDesc)
 {
-	return new EdraSDK::PlatformOS::Win32Window(pWinDesc);
+	return (EdraHandle)(new EdraSDK::PlatformOS::Win32Window(pWinDesc));
 }
 
-EDRA_EXPORT_CALL_FUN(void) Edra_Window_Destroy(EDP::IWindow* pObj)
+EDRA_EXPORT_CALL_FUN(void) Edra_Window_Destroy(EdraHandle pObj)
 {
-	delete pObj;
+	if (pObj)
+	{
+		EdraSDK::Platform::IWindow* lWin = (EdraSDK::Platform::IWindow*)pObj;
+		delete lWin;
+	}
 }
 
-EdraSDK::PlatformOS::Win32Window::Win32Window(const EDP::WindowDesc& pWinDesc)
-	: EDP::IWindow()
+EdraSDK::PlatformOS::Win32Window::Win32Window(const EdraSDK::Platform::WindowDesc& pWinDesc)
+	: EdraSDK::Platform::IWindow()
 	, mShouldClose(false)
 	, mHandle(nullptr)
 {
@@ -53,6 +56,6 @@ bool EdraSDK::PlatformOS::Win32Window::shouldClose() const
 	return false;
 }
 
-void EdraSDK::PlatformOS::Win32Window::setWindowEventCallback(EDP::IWindow::WinEventCallback pCallback)
+void EdraSDK::PlatformOS::Win32Window::setWindowEventCallback(EdraSDK::Platform::IWindow::WinEventCallback pCallback)
 {
 }

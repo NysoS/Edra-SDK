@@ -37,6 +37,7 @@ target_include_directories(
     $<INSTALL_INTERFACE:include>
 )
 
+target_precompile_headers(${PROJECT_NAME} PRIVATE ${INC_DIR}/EdraSDK/${PROJECT_NAME}/edrapch.hpp)
 target_compile_definitions(${PROJECT_NAME} PRIVATE EDRA_CORE_BUILD_DLL)
 
 install(

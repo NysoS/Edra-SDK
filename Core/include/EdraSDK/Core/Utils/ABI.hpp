@@ -1,25 +1,24 @@
 #ifndef EDC_ABI
 #define EDC_ABI
 
+#include "EdraSDK/Core/EdraDef.hpp"
+
 #ifdef __cplusplus
 #define EXTERNC extern "C"
 #else
 #define EXTERNC
 #endif
 
-#define EDRA_EXPORT_CALL_FUN(ReturnType) __declspec(dllexport) ReturnType __stdcall
-#define EDRA_IMPORT_CALL_FUN(ReturnType) __declspec(dllimport) ReturnType __stdcall
+#if defined(_WIN32) || defined(__CYGWIN__)
+	#define EDRA_EXPORT_CALL_FUN(ReturnType) __declspec(dllexport) ReturnType
+	#define EDRA_IMPORT_CALL_FUN(ReturnType) __declspec(dllimport) ReturnType
+#elif defined(__GNUC__) && __GNUC__ >= 4
+	#define EDRA_EXPORT_CALL_FUN(ReturnType) __attribute__((visibility("default"))) ReturnType
+	#define EDRA_IMPORT_CALL_FUN(ReturnType) ReturnType
+#endif
 
-#define EDRA_ABI_IMPL(Name, Type, ...) \
-	EXTERNC { \
-		EDRA_EXPORT_CALL_FUN(Type*) Edra_##Name##_Create(__VA_ARGS__); \
-		EDRA_EXPORT_CALL_FUN(void) Edra_##Name##_Destroy(Type* obj); \
-	} \
-
-#define EDRA_ABI_INTERFACE(Name, Type, ...) \
-	EXTERNC { \
-		EDRA_IMPORT_CALL_FUN(Type*) Edra_##Name##_Create(__VA_ARGS__); \
-		EDRA_IMPORT_CALL_FUN(void) Edra_##Name##_Destroy(Type* obj); \
-	} \
+#define EDRA_ABI_INTERFACE(Name, ...) \
+	typedef EdraHandle (*FN_Edra_##Name##_Create)(__VA_ARGS__); \
+	typedef void(*FN_Edra_##Name##_Destroy)(EdraHandle); \
 
 #endif // EDC_ABI

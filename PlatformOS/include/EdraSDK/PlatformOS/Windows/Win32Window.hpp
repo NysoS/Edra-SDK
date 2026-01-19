@@ -3,15 +3,14 @@
 
 #include "EdraSDK/Platform/Window/WindowCore.hpp"
 #include "EdraSDK/PlatformOS/EdraPlatformOS.hpp"
-
-#include <Windows.h>
+#include "EdraSDK/Core/EdraDef.hpp"
 
 namespace EdraSDK::PlatformOS
 {
-	class EDP_OS_API Win32Window : public EDP::IWindow
+	class EDP_OS_API Win32Window : public EdraSDK::Platform::IWindow
 	{
 	public:
-		Win32Window(const EDP::WindowDesc& pWinDesc);
+		Win32Window(const EdraSDK::Platform::WindowDesc& pWinDesc);
 		virtual ~Win32Window();
 
 		virtual bool initialize();
@@ -21,13 +20,13 @@ namespace EdraSDK::PlatformOS
 		virtual void* getNativeHandle() const;
 		virtual bool shouldClose() const;
 
-		virtual void setWindowEventCallback(EDP::IWindow::WinEventCallback pCallback);
+		virtual void setWindowEventCallback(EdraSDK::Platform::IWindow::WinEventCallback pCallback);
 	private:
-		EDP::WindowDesc mWinDesc;
+		EdraSDK::Platform::WindowDesc mWinDesc;
 		bool mShouldClose;
-		HWND mHandle;
+		EdraHandle mHandle;
 
-		EDP::IWindow::WinEventCallback mOnWindowEventCallback;
+		EdraSDK::Platform::IWindow::WinEventCallback mOnWindowEventCallback;
 	};
 };
 

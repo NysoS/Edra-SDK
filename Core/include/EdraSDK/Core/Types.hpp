@@ -5,10 +5,6 @@
 #include <string>
 
 namespace EdraSDK {
-	namespace Core{}
-	namespace Platform{}
-	namespace PlatformOS{}
-
 	using u8 = uint8_t;
 	using u16 = uint16_t;
 	using u32 = uint32_t;
@@ -28,9 +24,5 @@ namespace EdraSDK {
 	using StringC = const char*;
 	using StringWC = const wchar_t*;
 }
-
-namespace EDC = EdraSDK::Core;
-namespace EDP = EdraSDK::Platform;
-namespace EDP_OS = EdraSDK::PlatformOS;
 
 #endif // !EDC_ALIASES_HPP
