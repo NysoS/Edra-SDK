@@ -18,7 +18,9 @@
 #endif
 
 #define EDRA_ABI_INTERFACE(Name, ...) \
-	typedef EdraHandle(*FN_Edra_##Name##_Create)(__VA_ARGS__); \
-	typedef void(*FN_Edra_##Name##_Destroy)(EdraHandle);
+	namespace EdraSDK::ABI { \
+		typedef EdraSDK::EdraHandle(*FN_Edra_##Name##_Create)(__VA_ARGS__); \
+		typedef void(*FN_Edra_##Name##_Destroy)(EdraSDK::EdraHandle); \
+	};
 
 #endif // EDC_ABI

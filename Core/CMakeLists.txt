@@ -25,6 +25,12 @@ source_group(
     FILES ${HEADERS}
 )
 
+source_group(
+    TREE ${SRC_DIR}
+    PREFIX "Source Files"
+    FILES ${SOURCES}
+)
+
 target_sources(${PROJECT_NAME}
     PRIVATE
     ${HEADERS}

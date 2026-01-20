@@ -1,8 +1,7 @@
-#ifndef EDC_ALIASES_HPP
-#define EDC_ALIASES_HPP
+#ifndef EDC_TYPES_HPP
+#define EDC_TYPES_HPP
 
-#include <cstdint>
-#include <string>
+#include "EdraSDK/Core/edrapch.hpp"
 
 namespace EdraSDK {
 	using u8 = uint8_t;
@@ -20,9 +19,14 @@ namespace EdraSDK {
 
 	using String = std::string;
 	using StringW = std::wstring;
+	using StringV = std::string_view;
 
+	using EdraProc = void(*)();
+
+#ifdef _WIN32
 	using StringC = const char*;
 	using StringWC = const wchar_t*;
+#endif // _WIN32
 }
 
-#endif // !EDC_ALIASES_HPP
+#endif // !EDC_TYPES_HPP
