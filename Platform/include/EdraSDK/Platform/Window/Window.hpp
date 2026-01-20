@@ -1,6 +1,7 @@
 #include "EdraSDK/Platform/EdraPlatform.hpp"
 #include "EdraSDK/Platform/Window/WindowCore.hpp"
 #include "EdraSDK/Core/EdraDef.hpp"
+#include "EdraSDK/Core/Types.hpp"
 #include "EdraSDK/Platform/Window/WindowDefABI.hpp"
 
 #include <iostream>
@@ -13,8 +14,8 @@ namespace EdraSDK::Platform
 	class EDP_API Window
 	{
 	public:
-		static FN_Edra_Window_Create s_CreateFunc;
-		static FN_Edra_Window_Destroy s_DestroyFun;
+		static EdraSDK::ABI::FN_Edra_Window_Create s_CreateFunc;
+		static EdraSDK::ABI::FN_Edra_Window_Destroy s_DestroyFun;
 		static EdraModule s_PlatformModule;
 
 		Window(const WindowDesc& pWinDesc);
@@ -26,6 +27,6 @@ namespace EdraSDK::Platform
 		IWindow* operator->() noexcept { return (IWindow*)mHandle; };
 
 	private:
-		EdraHandle mHandle;
+		EdraSDK::EdraHandle mHandle;
 	};
 }

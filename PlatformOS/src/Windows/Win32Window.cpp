@@ -4,12 +4,12 @@
 
 #include <iostream>
 
-EDRA_EXPORT_CALL_FUN(EdraHandle) Edra_Window_Create(const EdraSDK::Platform::WindowDesc& pWinDesc)
+EDRA_EXPORT_CALL_FUN(EdraSDK::EdraHandle) Edra_Window_Create(const EdraSDK::Platform::WindowDesc& pWinDesc)
 {
-	return (EdraHandle)(new EdraSDK::PlatformOS::Win32Window(pWinDesc));
+	return (EdraSDK::EdraHandle)(new EdraSDK::PlatformOS::Win32Window(pWinDesc));
 }
 
-EDRA_EXPORT_CALL_FUN(void) Edra_Window_Destroy(EdraHandle pObj)
+EDRA_EXPORT_CALL_FUN(void) Edra_Window_Destroy(EdraSDK::EdraHandle pObj)
 {
 	if (pObj)
 	{
