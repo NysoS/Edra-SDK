@@ -3,7 +3,6 @@
 #include "EdraSDK/Core/EdraDef.hpp"
 
 #include <iostream>
-#include <windows.h>
 
 EDRA_EXPORT_CALL_FUN(EdraHandle) Edra_Window_Create(const EdraSDK::Platform::WindowDesc& pWinDesc)
 {

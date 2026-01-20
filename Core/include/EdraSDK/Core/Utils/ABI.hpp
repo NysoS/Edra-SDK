@@ -10,15 +10,15 @@
 #endif
 
 #if defined(_WIN32) || defined(__CYGWIN__)
-	#define EDRA_EXPORT_CALL_FUN(ReturnType) __declspec(dllexport) ReturnType
-	#define EDRA_IMPORT_CALL_FUN(ReturnType) __declspec(dllimport) ReturnType
+	#define EDRA_EXPORT_CALL_FUN(ReturnType) EXTERNC __declspec(dllexport) ReturnType
+	#define EDRA_IMPORT_CALL_FUN(ReturnType) EXTERNC __declspec(dllimport) ReturnType
 #elif defined(__GNUC__) && __GNUC__ >= 4
-	#define EDRA_EXPORT_CALL_FUN(ReturnType) __attribute__((visibility("default"))) ReturnType
-	#define EDRA_IMPORT_CALL_FUN(ReturnType) ReturnType
+	#define EDRA_EXPORT_CALL_FUN(ReturnType) EXTERNC __attribute__((visibility("default"))) ReturnType
+	#define EDRA_IMPORT_CALL_FUN(ReturnType) EXTERNC ReturnType
 #endif
 
 #define EDRA_ABI_INTERFACE(Name, ...) \
-	typedef EdraHandle (*FN_Edra_##Name##_Create)(__VA_ARGS__); \
-	typedef void(*FN_Edra_##Name##_Destroy)(EdraHandle); \
+	typedef EdraHandle(*FN_Edra_##Name##_Create)(__VA_ARGS__); \
+	typedef void(*FN_Edra_##Name##_Destroy)(EdraHandle);
 
 #endif // EDC_ABI

@@ -1,13 +1,9 @@
 #ifndef EDP_WINDOW_CORE_HPP
 #define EDP_WINDOW_CORE_HPP
 
+#include "EdraSDK/Core/edrapch.hpp"
 #include "EdraSDK/Platform/EdraPlatform.hpp"
-
 #include "EdraSDK/Core/Types.hpp"
-#include "EdraSDK/Core/Utils/ABI.hpp"
-
-#include <string>
-#include <functional>
 
 namespace EdraSDK::Platform
 {
@@ -34,11 +30,5 @@ namespace EdraSDK::Platform
 		virtual void setWindowEventCallback(WinEventCallback pCallback) = 0;
 	};
 };
-
-EDRA_ABI_INTERFACE(Window, const EdraSDK::Platform::WindowDesc&);
-
-//typedef EdraSDK::Platform::IWindow* (__stdcall* FN_Edra_Window_Create)(const EdraSDK::Platform::WindowDesc&);
-//typedef void(__stdcall* FN_Edra_Window_Destroy)(EdraSDK::Platform::IWindow*);
-//EDRA_ABI_INTERFACE(Window, EDP::IWindow, const EDP::WindowDesc& pWinDesc)
 
 #endif // !EDP_WINDOW_CORE_HPP
