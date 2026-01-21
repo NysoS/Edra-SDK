@@ -40,7 +40,6 @@ namespace EdraSDK::Core {
 		static inline bool close(EdraSDK::EdraModule pHandle) noexcept
 		{
 			if (!ClearModule((PlatformModule)pHandle)) return false;
-			pHandle = nullptr;
 			return true;
 		};
 
