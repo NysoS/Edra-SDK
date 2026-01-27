@@ -7,6 +7,11 @@
 
 namespace EdraSDK::PlatformOS
 {
+	#ifndef HINST_THISCOMPONENT
+		EXTERN_C IMAGE_DOS_HEADER __ImageBase;
+	#define HINST_THISCOMPONENT ((HINSTANCE)&__ImageBase)
+	#endif // !HINST_THISCOMPONENT
+
 	class EDP_OS_API Win32Window : public EdraSDK::Platform::IWindow
 	{
 	public:
@@ -22,9 +27,11 @@ namespace EdraSDK::PlatformOS
 
 		virtual void setWindowEventCallback(EdraSDK::Platform::IWindow::WinEventCallback pCallback);
 	private:
+		static LRESULT CALLBACK WindowProc(HWND pHwnd, UINT pMessage, WPARAM pWParam, LPARAM pLParam);
+
 		EdraSDK::Platform::WindowDesc mWinDesc;
 		bool mShouldClose;
-		EdraHandle mHandle;
+		HWND mHandle;
 
 		EdraSDK::Platform::IWindow::WinEventCallback mOnWindowEventCallback;
 	};

@@ -18,15 +18,10 @@ namespace EdraSDK {
 	using f64 = double;
 
 	using String = std::string;
-	using StringW = std::wstring;
+	using StringC = const char*;
 	using StringV = std::string_view;
 
 	using EdraProc = void(*)();
-
-#ifdef _WIN32
-	using StringC = const char*;
-	using StringWC = const wchar_t*;
-#endif // _WIN32
 }
 
 #endif // !EDC_TYPES_HPP

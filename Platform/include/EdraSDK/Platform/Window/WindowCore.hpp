@@ -8,7 +8,7 @@
 namespace EdraSDK::Platform
 {
 	struct EDP_API WindowDesc {
-		StringWC mTitle = L"Window";
+		StringC mTitle = "Window";
 		const u32 mWidth = 800;
 		const u32 mHeight = 800;
 		const bool mResizable = false;

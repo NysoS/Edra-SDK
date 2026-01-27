@@ -17,7 +17,7 @@ namespace EdraSDK::Platform
 		Window(const Window&) = delete;
 		Window& operator=(const Window&) = delete;
 
-		IWindow* operator->() noexcept { return (IWindow*)mHandle; };
+		IWindow* get() noexcept { return (IWindow*)mHandle; };
 
 		static std::unique_ptr<Window> create(const WindowDesc& pWinDesc);
 
