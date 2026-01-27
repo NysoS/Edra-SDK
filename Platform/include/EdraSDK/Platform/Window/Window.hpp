@@ -12,7 +12,6 @@ namespace EdraSDK::Platform
 	class EDP_API Window
 	{
 	public:
-		Window(const WindowDesc& pWinDesc);
 		~Window();
 
 		Window(const Window&) = delete;
@@ -20,7 +19,11 @@ namespace EdraSDK::Platform
 
 		IWindow* operator->() noexcept { return (IWindow*)mHandle; };
 
+		static std::unique_ptr<Window> create(const WindowDesc& pWinDesc);
+
 	private:
+		Window(const WindowDesc& pWinDesc);
+
 		EdraSDK::EdraHandle mHandle;
 		std::shared_ptr<EdraSDK::Platform::WindowABIContext> mContext;
 	};

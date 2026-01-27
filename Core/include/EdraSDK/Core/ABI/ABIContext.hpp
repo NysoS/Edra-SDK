@@ -24,7 +24,6 @@ namespace EdraSDK::ABI {
 
 		void destroy_impl()
 		{
-			//
 		}
 
 	protected:

@@ -14,7 +14,7 @@ EdraSDK::Platform::Window::Window(const WindowDesc& pWinDesc)
 	mContext = ::getGlobalWindowABIContext();
 	if (!mContext)
 		throw std::runtime_error("[SDK] No Window ABI Context finded");
-	
+
 	std::cout << "[SDK] Reusing existing ABI Context" << std::endl;
 	mHandle = mContext->create(pWinDesc);
 }
@@ -25,4 +25,9 @@ EdraSDK::Platform::Window::~Window()
 	{
 		mContext->destroy(mHandle);
 	}
+}
+
+std::unique_ptr<EdraSDK::Platform::Window> EdraSDK::Platform::Window::create(const WindowDesc& pWinDesc)
+{
+	return std::unique_ptr<Window>(new Window(pWinDesc));
 }
