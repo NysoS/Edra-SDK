@@ -17,14 +17,20 @@ namespace EdraSDK::Platform
 		Window(const Window&) = delete;
 		Window& operator=(const Window&) = delete;
 
-		IWindow* get() noexcept { return (IWindow*)mHandle; };
+		bool init();
+		bool shouldClose();
+		void poolEvent();
 
 		static std::unique_ptr<Window> create(const WindowDesc& pWinDesc);
 
 	private:
 		Window(const WindowDesc& pWinDesc);
+		void OnDestroyNotify(void* pEvent);
+
+		IWindow* get() noexcept { return (IWindow*)mHandle; };
 
 		EdraSDK::EdraHandle mHandle;
+		bool mShouldClose;
 		std::shared_ptr<EdraSDK::Platform::WindowABIContext> mContext;
 	};
 }

@@ -14,6 +14,7 @@ EDRA_EXPORT_CALL_FUN(void) Edra_Window_Destroy(EdraSDK::EdraHandle pObj)
 	if (pObj)
 	{
 		EdraSDK::Platform::IWindow* lWin = (EdraSDK::Platform::IWindow*)pObj;
+		lWin->destroy();
 		delete lWin;
 	}
 }
@@ -29,7 +30,6 @@ EdraSDK::PlatformOS::Win32Window::Win32Window(const EdraSDK::Platform::WindowDes
 
 EdraSDK::PlatformOS::Win32Window::~Win32Window()
 {
-
 	std::cout << "PlatformOS window on Windows destroyed" << std::endl;
 }
 
@@ -90,6 +90,8 @@ void EdraSDK::PlatformOS::Win32Window::poolEvent()
 	{
 		TranslateMessage(&lMsg);
 		DispatchMessage(&lMsg);
+
+		if (mShouldClose) return;
 
 		if (lMsg.message == WM_QUIT || lMsg.message == WM_CLOSE)
 		{
