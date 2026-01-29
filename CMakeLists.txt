@@ -10,6 +10,7 @@ find_package(Threads REQUIRED)
 
 add_subdirectory(Core)
 add_subdirectory(Platform)
+add_subdirectory(PlatformOS)
 
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT Core)
 
@@ -19,6 +20,7 @@ install(
     TARGETS
         Core
         Platform
+        PlatformOS
     EXPORT EdraSDKTargets
     ARCHIVE DESTINATION lib
     LIBRARY DESTINATION lib
